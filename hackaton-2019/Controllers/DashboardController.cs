@@ -58,7 +58,17 @@ namespace hackaton_2019.Controllers
                 Session["cultivos"] = tipoCultivos;
             }
 
+            if (Session["conceptosDetalles"] == null)
+            {
+                List<ConceptoDetalle> conceptoDetalles = new List<ConceptoDetalle>();
+                List<Concepto> conceptos = new List<Concepto>();
+                conceptos = (List<Concepto>)Session["conceptos"];
+                //ViewData["conceptos"] = conceptos;
 
+                conceptoDetalles.Add(new ConceptoDetalle { Id = 1, Concepto = conceptos.Where(w => w.Id == 1).FirstOrDefault().Nombre, FechaRegistro = Convert.ToDateTime("2019/01/01"), Inversion = 5000 });
+                Session["conceptosDetalles"] = conceptoDetalles;
+
+            }
 
             string url = "http://www.fao.org/americas/noticias/rss/feed/es/?key=33";
             List<NewsResponse> news = new List<NewsResponse>();
@@ -79,18 +89,20 @@ namespace hackaton_2019.Controllers
             ConceptosViewModel obj = new ConceptosViewModel();
             obj.NewsResponses = news.Take(10).ToList() as List<NewsResponse>;
             List<TipoCultivo> tipoCultivo = new List<TipoCultivo>();
-            tipoCultivo = (List<TipoCultivo>) Session["cultivos"];
+            tipoCultivo = (List<TipoCultivo>)Session["cultivos"];
             List<Cultivo> cultivos = new List<Cultivo>();
             if (Session["superficie"] == null)
             {
-                cultivos.Add(new Cultivo {
+                cultivos.Add(new Cultivo
+                {
                     Id = 1,
                     TipoCultivo = tipoCultivo.Where(w => w.Id == 1).FirstOrDefault().Nombre,
                     FechaInicio = Convert.ToDateTime("2019/01/01"),
-                    Nombre = "Algodón"
+                    Nombre = "Algodón",
+                    Superficie = 200
                 });
                 Session["superficie"] = cultivos;
-                
+
             }
             else
             {

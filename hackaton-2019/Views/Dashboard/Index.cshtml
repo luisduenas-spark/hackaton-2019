@@ -275,7 +275,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Agregar Concepto</h4>
+                <h4 class="modal-title" id="myModalLabel">Agregar Cultivo</h4>
             </div>
             <div class="modal-body">
                 @using (Html.BeginForm())
@@ -286,7 +286,7 @@
 
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Cultivos.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Cultivos.Nombre, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.Cultivos.Nombre, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Cultivos.Nombre, "", new { @class = "text-danger" })
@@ -314,7 +314,7 @@
 
 
                         <div class="form-group">
-                            @Html.Label("Fecha Inicio", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("Fecha Inicio", htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-10">
                                 @Html.TextBoxFor(model => model.Cultivos.FechaInicio, new { @class = "form-control datefield", @placeholder = "dd/mm/yyyy" })
                                 @Html.ValidationMessageFor(model => model.Cultivos.FechaInicio, "", new { @class = "text-danger" })
@@ -322,7 +322,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Cultivos.Superficie, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Cultivos.Superficie, htmlAttributes: new { @class = "control-label col-md-8" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.Cultivos.Superficie, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Cultivos.Superficie, "", new { @class = "text-danger" })
