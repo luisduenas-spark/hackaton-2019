@@ -11,6 +11,7 @@ namespace hackaton_2019.ViewModel
     {
         public List<NewsResponse> NewsResponses { get; set; }
         public Cultivo Cultivos { get; set; }
+        public Concepto Concepto { get; set; }
 
     }
     // class NewsResponse

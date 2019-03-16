@@ -61,7 +61,7 @@
                                     <span class="count">0</span>
                                 }
                             </div>
-                            <small class="text-muted text-uppercase font-weight-bold">Cultivos</small>
+                            <small class="text-muted text-uppercase font-weight-bold">Cultivos Activos</small>
                             <div class="progress progress-xs mt-3 mb-0 bg-flat-color-2" style="width: 40%; height: 5px;"></div>
                         </div>
                     </div>
@@ -220,7 +220,7 @@
                             break;
                     }
                     <div class="col-md-4">
-                        <a href="@Url.Action("Index", "DetalleInversion")">
+                        <a href="@Url.Action("Index", "DetalleInversion", new { id = item.Id})">
                             <section class="card">
                                 <div class="twt-feed @background">
                                     <div class="corner-ribon black-ribon">
