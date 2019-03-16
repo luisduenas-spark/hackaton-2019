@@ -20,5 +20,7 @@ namespace hackaton_2019.Models
         public string Nombre { get; set; }
         [Display(Name ="Superficie (m2)")]
         public int Superficie { get; set; }
+        public double KilosCosechados { get; set; }
+        public double PrecioKilo { get; set; }
     }
 }
