@@ -169,6 +169,7 @@
     <Content Include="Content\fonts\icomoon\index.html" />
     <Content Include="Content\images\.gitignore" />
     <Content Include="Content\images\admin.jpg" />
+    <Content Include="Content\images\agroapp.png" />
     <Content Include="Content\images\avatar\1.jpg" />
     <Content Include="Content\images\avatar\2.jpg" />
     <Content Include="Content\images\avatar\3.jpg" />
@@ -177,6 +178,8 @@
     <Content Include="Content\images\avatar\6.jpg" />
     <Content Include="Content\images\avatar\64-1.jpg" />
     <Content Include="Content\images\avatar\64-2.jpg" />
+    <Content Include="Content\images\icono.png" />
+    <Content Include="Content\images\logonobg.png" />
     <Content Include="Content\images\profile.png" />
     <Content Include="Content\images\favicon.png" />
     <Content Include="Content\images\logo.png" />
