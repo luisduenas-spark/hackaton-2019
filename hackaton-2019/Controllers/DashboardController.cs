@@ -52,7 +52,7 @@ namespace hackaton_2019.Controllers
                 tipoCultivos.Add(new TipoCultivo
                 {
                     Id = 2,
-                    Nombre = "Alflfa"
+                    Nombre = "Alfalfa"
                 });
                 Session["cultivos"] = tipoCultivos;
             }
