@@ -76,7 +76,7 @@ namespace hackaton_2019.Controllers
         [HttpPost]
         public ActionResult Edit(Concepto concepto)
         {
-            List<Concepto> conceptos = (List<Concepto>)Session["conceptos"];
+             List<Concepto> conceptos = (List<Concepto>)Session["conceptos"];
 
             Concepto conceptoEditar = conceptos.Where(w => w.Id == concepto.Id).FirstOrDefault();
 
