@@ -78,17 +78,17 @@
                         </div>
                     </div>
                     @*<div class="card col-md-6 no-padding ">
-                        <div class="card-body">
-                            <div class="h1 text-muted text-right mb-4">
-                                <i class="fa fa-bug"></i>
+                            <div class="card-body">
+                                <div class="h1 text-muted text-right mb-4">
+                                    <i class="fa fa-bug"></i>
+                                </div>
+                                <div class="h4 mb-0">
+                                    <span class="count">28</span>%
+                                </div>
+                                <small class="text-muted text-uppercase font-weight-bold">Control de plaga</small>
+                                <div class="progress progress-xs mt-3 mb-0 bg-flat-color-4" style="width: 40%; height: 5px;"></div>
                             </div>
-                            <div class="h4 mb-0">
-                                <span class="count">28</span>%
-                            </div>
-                            <small class="text-muted text-uppercase font-weight-bold">Control de plaga</small>
-                            <div class="progress progress-xs mt-3 mb-0 bg-flat-color-4" style="width: 40%; height: 5px;"></div>
-                        </div>
-                    </div>*@
+                        </div>*@
                     <div class="card col-md-6 no-padding ">
                         <div class="card-body">
                             <div class="h1 text-muted text-right mb-4">
@@ -264,8 +264,37 @@
                 }
             }
         </div>
+
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title box-title">Agro Chatbot</h4>
+                        <div class="card-content">
+                            <div class="messenger-box">
+                                <ul id="chat-list">
+                                   
+                                    
+                                </ul>
+                                <div class="send-mgs">
+                                    <div class="yourmsg">
+                                        <input id="chat-text" class="form-control" type="text">
+                                    </div>
+                                    <button class="btn msg-send-btn" id="send-chat">
+                                        <i class="fa fa-location-arrow"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
 
 <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -354,4 +383,106 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script>
+
+    function make_base_auth(user, password) {
+        var tok = user + ':' + password;
+        var hash = btoa(tok);
+        return 'Basic ' + hash;
+    }
+
+    jQuery(document).ready(function ($) {
+
+        var username = "apikey";
+        var password = "4GDoDVpfgiArceLHXItzgTUwKl_YwDHRMqxJNntsNuqQ";
+
+        $.ajax({
+            url: "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/2322e79f-7f88-4b75-9995-375359597a7a/message?version=2018-09-20",
+            contentType: 'application/json',
+            dataType: "json",
+            type: "POST",
+            headers: {
+                "Authorization": make_base_auth(username, password)
+            },
+            success: function (result) {
+                $('#chat-list').append('<li><div class="msg-received msg-container"><div class="avatar"><img src="/Content/images/agrobot.png" alt="">\
+                <div class="send-time"> </div>\
+                </div>\
+                     <div class="msg-box">\
+                         <div class="inner-box">\
+                             <div class="name">\
+                                 Agrobot\
+                             </div>\
+                             <div class="meg">'
+                    + result.output.text
+                    + '</div>\
+                         </div>\
+                     </div>\
+                 </div>\
+             </li>');
+            }
+        });
+
+
+
+        $("#send-chat").click(function () {
+
+            var username = "apikey";
+            var password = "4GDoDVpfgiArceLHXItzgTUwKl_YwDHRMqxJNntsNuqQ";
+
+            $.ajax({
+                url: "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/2322e79f-7f88-4b75-9995-375359597a7a/message?version=2018-09-20",
+                contentType: 'application/json',
+                dataType: "json",
+                data: JSON.stringify({ input: { text: $('#chat-text').val() } }),
+                type: "POST",
+                headers: {
+                    "Authorization": make_base_auth(username, password)
+                },
+                success: function (result) {
+                    $('#chat-list').append('<li><div class="msg-received msg-container"><div class="avatar"><img src="/Content/images/agrobot.png" alt="">\
+                <div class="send-time"> </div>\
+                </div>\
+                     <div class="msg-box">\
+                         <div class="inner-box">\
+                             <div class="name">\
+                                 Agrobot\
+                             </div>\
+                             <div class="meg">'
+                        + result.output.text
+                        + '</div>\
+                         </div>\
+                     </div>\
+                 </div>\
+             </li>');
+                }
+            });
+
+
+
+            $('#chat-list').append('<li><div class="msg-received msg-container"><div class="avatar"><img src="/Content/images/icono.png" alt="">\
+                <div class="send-time"> </div>\
+                </div>\
+                     <div class="msg-box">\
+                         <div class="inner-box">\
+                             <div class="name">\
+                                 Missael Padilla\
+                             </div>\
+                             <div class="meg">'
+                                  + $('#chat-text').val()
+                             + '</div>\
+                         </div>\
+                     </div>\
+                 </div>\
+             </li>');
+
+            var texto = $('#chat-text').val();
+            console.log(texto);
+            $('#chat-text').val("");
+
+        });
+    })
+</script>
 
