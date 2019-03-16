@@ -140,6 +140,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Concepto.cs" />
+    <Compile Include="Models\ConceptoDetalle.cs" />
     <Compile Include="Models\NewsResponse.cs" />
     <Compile Include="Models\TipoCultivo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -258,6 +259,7 @@
     <Content Include="Views\TipoCultivo\DeleteTipoCultivo.cshtml" />
     <Content Include="Views\TipoCultivo\AgregarTipoCultivo.cshtml" />
     <Content Include="Views\Noticias\Index.cshtml" />
+    <Content Include="Views\Home\Exit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

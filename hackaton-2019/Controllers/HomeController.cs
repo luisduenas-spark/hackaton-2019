@@ -26,5 +26,9 @@ namespace hackaton_2019.Controllers
 
             return View();
         }
+        public ActionResult Exit()
+        {
+            return View();
+        }
     }
 }
