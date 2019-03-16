@@ -5,7 +5,82 @@
     //var tabla = (List)ViewBag.conceptosDetalles;
 }
 <div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Progreso</h1>
+            </div>
+            <div style="display:inline-block;width:100%;overflow-y:auto;">
+                <ul class="timeline timeline-horizontal">
+                    <li class="timeline-item">
+                        <div class="timeline-badge primary"><i class="fa fa-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h6 class="timeline-title">Inicio de cultivo</h6>
+                                <p><small class="text-muted"> 12/03/19</small></p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>0%</p>
+                            </div>
+                        </div>
 
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-badge success"><i class="fa fa-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h6 class="timeline-title">Revision 1</h6>
+                                <p><small class="text-muted"> 12/05/19</small></p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>25%</p>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-badge warning"><i class="fa fa-clock-o"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h6 class="timeline-title">Revision 2</h6>
+                                <p><small class="text-muted"> 12/06/19</small></p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>50%</p>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-badge warning"><i class="fa fa-clock-o"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h6 class="timeline-title">Revision 3</h6>
+                                <p><small class="text-muted"> 12/08/19</small></p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>75%</p>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-badge danger"><i class="fa fa-clock-o"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h6 class="timeline-title">Tiempo de cosecha</h6>
+                                <p><small class="text-muted"> 12/10/19</small></p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>100%</p>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <!-- Widgets  -->
     <div class="row" style="padding-top:20px">
         <div class="col-lg-4 col-md-6">
@@ -260,19 +335,19 @@
                     {
                         @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">
+                        <div class="form-horizontal">
 
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        @Html.HiddenFor(model => model.Concepto)
-                        @Html.HiddenFor(model => model.FechaRegistro)
-                        @Html.HiddenFor(model => model.Id)
-                        @Html.HiddenFor(model => model.Inversion)
+                            @Html.HiddenFor(model => model.Concepto)
+                            @Html.HiddenFor(model => model.FechaRegistro)
+                            @Html.HiddenFor(model => model.Id)
+                            @Html.HiddenFor(model => model.Inversion)
 
                         <div class="form-group">
                             @Html.Label("Fecha Cosecha", htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-10">
-                                @Html.TextBoxFor(model => model.FechaRegistro, htmlAttributes: new  { @class = "form-control datefield", @placeholder = "dd/mm/yyyy" })
+                                @Html.TextBoxFor(model => model.FechaRegistro, new  { @class = "form-control datefield", @placeholder = "dd/mm/yyyy", @id = "FechaRegistoCosecha" })
                                 @Html.ValidationMessageFor(model => model.FechaRegistro, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -293,9 +368,9 @@
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="button" class="btn btn-primary" value="Aceptar" onclick="location.href='@Url.Action( "Cosechar", "DetalleInversion")'" />
 
+                                </div>
                             </div>
                         </div>
-                    </div>
                     }
                     @*@using (Html.BeginForm())
                         {
