@@ -262,6 +262,7 @@
     <Content Include="Views\Noticias\Index.cshtml" />
     <Content Include="Views\Home\Exit.cshtml" />
     <Content Include="Views\Proyecciones\Index.cshtml" />
+    <Content Include="Views\DetalleInversion\Pendejo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

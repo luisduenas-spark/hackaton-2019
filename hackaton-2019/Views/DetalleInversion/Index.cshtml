@@ -1,12 +1,14 @@
-﻿
-
-
+﻿@model hackaton_2019.Models.ConceptoDetalle
+@using hackaton_2019.Models
 @{
     Random rnd = new Random();
+    //var tabla = (List)ViewBag.conceptosDetalles;
 }
 <div class="animated fadeIn">
+
     <div class="pull-right" style="padding-top:20px;">
-        <button type="button" class="btn btn-primary">Agregar +</button>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">Agregar +</button>
     </div>    <!-- Widgets  -->
     <div class="row" style="padding-top:20px">
         <div class="col-lg-4 col-md-6">
@@ -128,31 +130,39 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>  <span class="name">Fertilizante</span> </td>
-                                        <td> <span class="product">15 Marzo 2019</span> </td>
-                                        <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>  <span class="name">Riego</span> </td>
-                                        <td> <span class="product">14 Marzo 2019</span> </td>
-                                        <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>  <span class="name">Fertilizante</span> </td>
-                                        <td> <span class="product">13 Marzo 2019</span> </td>
-                                        <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>  <span class="name">Riego</span> </td>
-                                        <td> <span class="product">12 Marzo 2019</span> </td>
-                                        <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>  <span class="name">Nómina</span> </td>
-                                        <td> <span class="product">11 Marzo 2019</span> </td>
-                                        <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
-                                    </tr>
+                                    @foreach (var item in ViewBag.conceptosDetalles)
+                                    {
+                                        <tr>
+                                            <td>  <span class="name">@item.Concepto</span> </td>
+                                            <td> <span class="product">@item.FechaRegistro</span> </td>
+                                            <td>$<span class="count">@item.Inversion</span></td>
+                                        </tr>
+                                    }
+                                    @*<tr>
+                                            <td>  <span class="name">Fertilizante</span> </td>
+                                            <td> <span class="product">15 Marzo 2019</span> </td>
+                                            <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>  <span class="name">Riego</span> </td>
+                                            <td> <span class="product">14 Marzo 2019</span> </td>
+                                            <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>  <span class="name">Fertilizante</span> </td>
+                                            <td> <span class="product">13 Marzo 2019</span> </td>
+                                            <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>  <span class="name">Riego</span> </td>
+                                            <td> <span class="product">12 Marzo 2019</span> </td>
+                                            <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>  <span class="name">Nómina</span> </td>
+                                            <td> <span class="product">11 Marzo 2019</span> </td>
+                                            <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
+                                        </tr>*@
                                 </tbody>
                             </table>
                         </div> <!-- /.table-stats -->
@@ -162,13 +172,92 @@
         </div>
     </div>
     <!-- /.details -->
+    <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Concepto</h4>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Concepto, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @{
+                                        List<Concepto> list = new List<Concepto>();
+                                        list = (List<Concepto>)Session["conceptos"];
+
+                                        List<SelectListItem> selectListItems = new List<SelectListItem>();
+                                        foreach (var item in list)
+                                        {
+
+                                            selectListItems.Add(new SelectListItem { Text = item.Nombre, Value = item.Nombre });
+                                        }
+                                    }
+                                    @Html.DropDownListFor(model => model.Concepto, selectListItems, "Select status")
+                                    @Html.ValidationMessageFor(model => model.Concepto, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Fecha Registro", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.FechaRegistro, new { @class = "form-control datefield", @placeholder = "dd/mm/yyyy" })
+                                    @Html.ValidationMessageFor(model => model.FechaRegistro, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Inversion, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Inversion, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Inversion, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @*@using (Html.BeginForm())
+                        {
+                        <div>
+                            @Html.EditorFor(model => model.FechaRegistro, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        }*@
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+        integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+        crossorigin="anonymous"></script>
 
 <script>
     jQuery(document).ready(function ($) {
+
+        // will trigger when the document is ready
+        //$('.datepicker').datepicker(); //Initialise any date pickers
+        $(function () {
+            $(".datefield").datepicker();
+        });
+
         // invest chart
         if ($('#traffic-chart').length) {
             var chart = new Chartist.Line('#traffic-chart', {
