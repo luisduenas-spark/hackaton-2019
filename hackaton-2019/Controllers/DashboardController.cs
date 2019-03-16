@@ -15,6 +15,50 @@ namespace hackaton_2019.Controllers
         public ActionResult Index()
         {
 
+            if (Session["conceptos"] == null)
+            {
+                List<Concepto> conceptos = new List<Concepto>();
+
+                conceptos.Add(new Concepto()
+                {
+                    Id = 1,
+                    Nombre = "Riego"
+                });
+                conceptos.Add(new Concepto()
+                {
+                    Id = 2,
+                    Nombre = "Fertilizante"
+                });
+                conceptos.Add(new Concepto()
+                {
+                    Id = 3,
+                    Nombre = "Nómina"
+                });
+
+                Session["conceptos"] = conceptos;
+            }
+
+            if (Session["cultivos"] == null)
+            {
+                List<TipoCultivo> tipoCultivos = new List<TipoCultivo>();
+
+                tipoCultivos.Add(new TipoCultivo
+                {
+                    Id = 1,
+                    Nombre = "Algodón"
+                });
+                Session["cultivos"] = tipoCultivos;
+
+                tipoCultivos.Add(new TipoCultivo
+                {
+                    Id = 2,
+                    Nombre = "Alflfa"
+                });
+                Session["cultivos"] = tipoCultivos;
+            }
+
+
+
             string url = "http://www.fao.org/americas/noticias/rss/feed/es/?key=33";
             List<NewsResponse> news = new List<NewsResponse>();
             XmlReader reader = XmlReader.Create(url);
