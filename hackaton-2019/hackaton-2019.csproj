@@ -142,12 +142,18 @@
     </Compile>
     <Compile Include="Models\Concepto.cs" />
     <Compile Include="Models\ConceptoDetalle.cs" />
+    <Compile Include="Models\Cultivo.cs" />
     <Compile Include="Models\NewsResponse.cs" />
     <Compile Include="Models\TipoCultivo.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ConceptosViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\hackaton-2019.dll" />
+    <Content Include="bin\hackaton-2019.pdb" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -266,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cultivo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,4 +1,5 @@
 ﻿using hackaton_2019.Models;
+using hackaton_2019.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,8 +76,34 @@ namespace hackaton_2019.Controllers
                     Summary = item.Summary.Text
                 });
             }
+            ConceptosViewModel obj = new ConceptosViewModel();
+            obj.NewsResponses = news.Take(10).ToList() as List<NewsResponse>;
+            List<TipoCultivo> tipoCultivo = new List<TipoCultivo>();
+            tipoCultivo = (List<TipoCultivo>) Session["cultivos"];
+            List<Cultivo> cultivos = new List<Cultivo>();
+            if (Session["superficie"] != null)
+            {
+                cultivos.Add(new Cultivo { Id = 1, TipoCultivo = tipoCultivo.Where(w => w.Id == 1).FirstOrDefault().Nombre, FechaInicio = Convert.ToDateTime("2019/01/01") });
+                Session["superficie"] = cultivos;
+                
+            }
+            else
+            {
+                cultivos = (List<Cultivo>)Session["superficie"];
+            }
+            return View(obj);
+        }
+        [HttpPost]
+        public ActionResult Index(Cultivo cultivo)
+        {
+            List<Cultivo> cultivos = (List<Cultivo>)Session["superficie"];
+            //List<Concepto> conceptos = new List<Concepto>();
+            //conceptos = (List<Concepto>)Session["conceptos"];
+            //conceptoDetalle.Concepto = 
+            cultivo.Id = cultivos.Count + 1;
+            cultivos.Add(cultivo);
 
-            return View(news.Take(10).ToList() as List<NewsResponse>);
+            return RedirectToAction("Index");
         }
     }
 }
