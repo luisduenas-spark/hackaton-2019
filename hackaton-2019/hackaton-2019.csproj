@@ -135,6 +135,7 @@
     <Compile Include="Controllers\DetalleInversionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
+    <Compile Include="Controllers\ProyeccionesController.cs" />
     <Compile Include="Controllers\TipoCultivoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -260,6 +261,7 @@
     <Content Include="Views\TipoCultivo\AgregarTipoCultivo.cshtml" />
     <Content Include="Views\Noticias\Index.cshtml" />
     <Content Include="Views\Home\Exit.cshtml" />
+    <Content Include="Views\Proyecciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
