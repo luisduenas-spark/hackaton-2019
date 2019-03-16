@@ -1,25 +1,28 @@
 ﻿@model hackaton_2019.Models.Concepto
 
-<h3>¿Estas seguro que deseas eliminar este concepto?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+<div style="padding-top:20px;">
+    <h3>¿Estas seguro que deseas eliminar este concepto?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
 
-    </dl>
+        </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar a la lista", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-default" /> |
+                @Html.ActionLink("Regresar a la lista", "Index")
+            </div>
+        }
+    </div>
 </div>
