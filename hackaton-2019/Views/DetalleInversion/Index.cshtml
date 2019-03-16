@@ -1,0 +1,208 @@
+﻿
+
+
+@{
+    Random rnd = new Random();
+}
+<div class="animated fadeIn">
+    <div class="pull-right">
+        <button type="button" class="btn btn-primary">Agregar +</button>
+    </div>    <!-- Widgets  -->
+    <div class="row" style="padding-top:20px">
+        <div class="col-lg-4 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-4">
+                            <i class="pe-7s-drop"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span>Riego</span></div>
+                                <div class="stat-heading">29 Febrero 2019</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-1">
+                            <i class="pe-7s-science"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span>Fertilizante</span></div>
+                                <div class="stat-heading">29 Febrero 2019</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-7">
+                            <i class="pe-7s-sun"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span>Soleado</span></div>
+                                <div class="stat-heading">27°</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /Widgets -->
+    <!--  Invest  -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="box-title">Inversión </h4>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card-body">
+                            <div id="traffic-chart" class="traffic-chart"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card-body">
+                            <div class="progress-box progress-1">
+                                <h4 class="por-title">Agua</h4>
+                                <div class="por-txt">$96,930</div>
+                                <div class="progress mb-2" style="height: 5px;">
+                                    <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="progress-box progress-2">
+                                <h4 class="por-title">Nómina</h4>
+                                <div class="por-txt">$18,600</div>
+                                <div class="progress mb-2" style="height: 5px;">
+                                    <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="progress-box progress-2">
+                                <h4 class="por-title">Fertilizante</h4>
+                                <div class="por-txt">$53,260</div>
+                                <div class="progress mb-2" style="height: 5px;">
+                                    <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div> <!-- /.card-body -->
+                    </div>
+                </div> <!-- /.row -->
+                <div class="card-body"></div>
+            </div>
+        </div><!-- /# column -->
+    </div>
+    <!--  /invest -->
+    <!-- Details -->
+    <div class="orders">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title">Detalle historico de Inversión</h4>
+                    </div>
+                    <div class="card-body--">
+                        <div class="table-stats order-table ov-h">
+                            <table class="table ">
+                                <thead>
+                                    <tr>
+                                        <th>Concepto</th>
+                                        <th>Fecha</th>
+                                        <th>Inversión</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>  <span class="name">Fertilizante</span> </td>
+                                        <td> <span class="product">15 Marzo 2019</span> </td>
+                                        <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>  <span class="name">Riego</span> </td>
+                                        <td> <span class="product">14 Marzo 2019</span> </td>
+                                        <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>  <span class="name">Fertilizante</span> </td>
+                                        <td> <span class="product">13 Marzo 2019</span> </td>
+                                        <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>  <span class="name">Riego</span> </td>
+                                        <td> <span class="product">12 Marzo 2019</span> </td>
+                                        <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>  <span class="name">Nómina</span> </td>
+                                        <td> <span class="product">11 Marzo 2019</span> </td>
+                                        <td>$<span class="count">@rnd.Next(0, 3000)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> <!-- /.table-stats -->
+                    </div>
+                </div> <!-- /.card -->
+            </div>  <!-- /.col-lg-8 -->
+        </div>
+    </div>
+    <!-- /.details -->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+
+<script>
+    jQuery(document).ready(function ($) {
+        // invest chart
+        if ($('#traffic-chart').length) {
+            var chart = new Chartist.Line('#traffic-chart', {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+                series: [
+                    [0, 1800, 3500, 2500, 2200, 0],
+                    [0, 3300, 1500, 2000, 1500, 300],
+                    [0, 1500, 2800, 1500, 3000, 500]
+                ]
+            }, {
+                    low: 0,
+                    showArea: true,
+                    showLine: false,
+                    showPoint: false,
+                    fullWidth: true,
+                    axisX: {
+                        showGrid: true
+                    }
+                });
+
+            chart.on('draw', function (data) {
+                if (data.type === 'line' || data.type === 'area') {
+                    data.element.animate({
+                        d: {
+                            begin: 500 * data.index,
+                            dur: 1000,
+                            from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                            to: data.path.clone().stringify(),
+                            easing: Chartist.Svg.Easing.easeOutQuint
+                        }
+                    });
+                }
+            });
+        }
+
+    })
+</script>

@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DetalleInversionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -160,6 +161,7 @@
     <Content Include="Content\images\avatar\6.jpg" />
     <Content Include="Content\images\avatar\64-1.jpg" />
     <Content Include="Content\images\avatar\64-2.jpg" />
+    <Content Include="Content\images\profile.png" />
     <Content Include="Content\images\favicon.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo2.png" />
@@ -235,6 +237,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\DetalleInversion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
