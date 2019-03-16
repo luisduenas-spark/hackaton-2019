@@ -32,7 +32,7 @@ namespace hackaton_2019.Controllers
                 });
             }
 
-            return View(news);
+            return View(news.Take(10).ToList() as List<NewsResponse>);
         }
     }
 }
