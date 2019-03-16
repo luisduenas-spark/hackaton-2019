@@ -3,7 +3,10 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@{
+    List<Cultivo> cultivos = (List<Cultivo>)Session["superficie"];
+    List<ConceptoDetalle> conceptosDetalle = (List<ConceptoDetalle>)Session["conceptosDetalles"];
+}
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
         <div class="row m-0">
@@ -14,8 +17,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
+            <div class="col-sm-8" style="padding-right:0;">
+                <div class="float-right">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#miModal"><i class="fa fa-plus"></i>&nbsp; Agregar Cultivo</button>
                 </div>
             </div>
@@ -36,7 +39,7 @@
                             </div>
 
                             <div class="h4 mb-0">
-                                <span class="count">3000</span>
+                                <span class="count">@cultivos.Sum(s => s.Superficie)</span>
                             </div>
 
                             <small class="text-muted text-uppercase font-weight-bold">Total Hectareas</small>
@@ -49,9 +52,17 @@
                                 <i class="fa fa-warning"></i>
                             </div>
                             <div class="h4 mb-0">
-                                <span class="count">2</span>
+
+                                @if (cultivos != null)
+                                {
+                                    <span class="count">@cultivos.Count</span>
+                                }
+                                else
+                                {
+                                    <span class="count">0</span>
+                                }
                             </div>
-                            <small class="text-muted text-uppercase font-weight-bold">Alertas</small>
+                            <small class="text-muted text-uppercase font-weight-bold">Cultivos</small>
                             <div class="progress progress-xs mt-3 mb-0 bg-flat-color-2" style="width: 40%; height: 5px;"></div>
                         </div>
                     </div>
@@ -61,13 +72,13 @@
                                 <i class="fa fa-dollar"></i>
                             </div>
                             <div class="h4 mb-0">
-                                $<span class="count">343534</span>
+                                $<span class="count">@conceptosDetalle.Sum(s => s.Inversion)</span>
                             </div>
                             <small class="text-muted text-uppercase font-weight-bold">Inversion Total</small>
                             <div class="progress progress-xs mt-3 mb-0 bg-flat-color-3" style="width: 40%; height: 5px;"></div>
                         </div>
                     </div>
-                    <div class="card col-md-6 no-padding ">
+                    @*<div class="card col-md-6 no-padding ">
                         <div class="card-body">
                             <div class="h1 text-muted text-right mb-4">
                                 <i class="fa fa-bug"></i>
@@ -78,7 +89,7 @@
                             <small class="text-muted text-uppercase font-weight-bold">Control de plaga</small>
                             <div class="progress progress-xs mt-3 mb-0 bg-flat-color-4" style="width: 40%; height: 5px;"></div>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="card col-md-6 no-padding ">
                         <div class="card-body">
                             <div class="h1 text-muted text-right mb-4">
@@ -187,156 +198,72 @@
 
 
 
-
-
-
 <div class="content">
     <div class="animated fadeIn">
 
         <div class="row">
-            <div class="col-md-4">
-                <a href="@Url.Action("Index", "DetalleInversion")">
-                    <section class="card">
-                        <div class="twt-feed bg-warning">
-                            <div class="corner-ribon black-ribon">
-                                <i class="fa fa-envira"></i>
-                            </div>
-                            <div class="fa fa-envira wtt-mark"></div>
+            @if (cultivos != null)
+            {
+                foreach (var item in cultivos)
+                {
+                    string background = "bg-warning";
+                    string icono = "fa-envira";
 
-                            <div class="media">
-                                <div class="media-body">
-                                    <h2 class="text-white display-6">Cultivo 1</h2>
-                                    <p class="text-light">Sudan Forrajero</p>
+                    switch (item.TipoCultivo.ToLower())
+                    {
+                        case "algodón":
+                            icono = "fa-envira";
+                            background = "bg-warning";
+                            break;
+                        case "alfalfa":
+                            icono = "fa-envira";
+                            background = "blue-bg";
+                            break;
+                    }
+                    <div class="col-md-4">
+                        <a href="@Url.Action("Index", "DetalleInversion")">
+                            <section class="card">
+                                <div class="twt-feed @background">
+                                    <div class="corner-ribon black-ribon">
+                                        <i class="fa @icono"></i>
+                                    </div>
+                                    <div class="fa fa-envira wtt-mark"></div>
+
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h2 class="text-white display-6">@item.Nombre</h2>
+                                            <p class="text-light">@item.TipoCultivo</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-
-
-
-                        </div>
-                        <div class="weather-category twt-category">
-                            <ul>
-                                <li class="active">
-                                    <h5>Riego</h5>
-                                    20/01/19
-                                </li>
-                                <li>
-                                    <h5>Fertilizacion</h5>
-                                    10/01/19
-                                </li>
-                                <li>
-                                    <h5>Status 3</h5>
-                                    50%
-                                </li>
-                            </ul>
-                        </div>
-                        <footer class="twt-footer">
-                            <i class="fa fa-map-marker"></i>
-                            Mexicali, BC
-                            <span class="pull-right">
-                                32&#176;
-                            </span>
-                        </footer>
-                    </section>
-                </a>
-            </div>
-
-            <div class="col-md-4">
-                <a href="@Url.Action("Index", "DetalleInversion")">
-                    <section class="card">
-                        <div class="twt-feed bg-primary">
-                            <div class="corner-ribon black-ribon">
-                                <i class="fa fa-cloud"></i>
-                            </div>
-                            <div class="fa fa-cloud wtt-mark"></div>
-
-                            <div class="media">
-                                <a href="#">
-                                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <h2 class="text-white display-6">Cultivo 2</h2>
-                                    <p class="text-light">Algodon</p>
+                                <div class="weather-category twt-category">
+                                    <ul>
+                                        <li class="active">
+                                            <h5>Riego</h5>
+                                            20/01/19
+                                        </li>
+                                        <li>
+                                            <h5>Fertilizacion</h5>
+                                            10/01/19
+                                        </li>
+                                        <li>
+                                            <h5>Humedad</h5>
+                                            50%
+                                        </li>
+                                    </ul>
                                 </div>
-                            </div>
-
-
-
-                        </div>
-                        <div class="weather-category twt-category">
-                            <ul>
-                                <li class="active">
-                                    <h5>Riego</h5>
-                                    20/01/19
-                                </li>
-                                <li>
-                                    <h5>Fertilizacion</h5>
-                                    10/01/19
-                                </li>
-                                <li>
-                                    <h5>Status 3</h5>
-                                    50%
-                                </li>
-                            </ul>
-                        </div>
-                        <footer class="twt-footer">
-                            <i class="fa fa-map-marker"></i>
-                            Mexicali, BC
-                            <span class="pull-right">
-                                32&#176;
-                            </span>
-                        </footer>
-                    </section>
-                </a>
-            </div>
-
-            <div class="col-md-4">
-                <a href="@Url.Action("Index", "DetalleInversion")">
-                    <section class="card">
-                        <div class="twt-feed bg-danger">
-                            <div class="corner-ribon black-ribon">
-                                <i class="fa fa-leaf"></i>
-                            </div>
-                            <div class="fa fa-leaf wtt-mark"></div>
-
-                            <div class="media">
-                                <a href="#">
-                                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <h2 class="text-white display-6">Cultivo 3</h2>
-                                    <p class="text-light">Sorgo Grano</p>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                        <div class="weather-category twt-category">
-                            <ul>
-                                <li class="active">
-                                    <h5>Riego</h5>
-                                    20/01/19
-                                </li>
-                                <li>
-                                    <h5>Fertilizacion</h5>
-                                    10/01/19
-                                </li>
-                                <li>
-                                    <h5>Status 3</h5>
-                                    50%
-                                </li>
-                            </ul>
-                        </div>
-                        <footer class="twt-footer">
-                            <i class="fa fa-map-marker"></i>
-                            Mexicali, BC
-                            <span class="pull-right">
-                                32&#176;
-                            </span>
-                        </footer>
-                    </section>
-                </a>
-            </div>
+                                <footer class="twt-footer">
+                                    <i class="fa fa-map-marker"></i>
+                                    Mexicali, BC
+                                    <span class="pull-right">
+                                        32&#176;
+                                    </span>
+                                </footer>
+                            </section>
+                        </a>
+                    </div>
+                }
+            }
         </div>
     </div>
 </div>
@@ -359,7 +286,15 @@
 
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
-                            @Html.Label("Tipo de Cultivo", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Cultivos.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Cultivos.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Cultivos.Nombre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Tipo Cultivo", htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-10">
                                 @{
                                     List<TipoCultivo> list = new List<TipoCultivo>();
@@ -377,6 +312,7 @@
                             </div>
                         </div>
 
+
                         <div class="form-group">
                             @Html.Label("Fecha Inicio", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -386,7 +322,15 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Cultivos.Coordenadas, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Cultivos.Superficie, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Cultivos.Superficie, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Cultivos.Superficie, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Cultivos.Coordenadas, htmlAttributes: new { @class = "control-label col-md-6" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.Cultivos.Coordenadas, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Cultivos.Coordenadas, "", new { @class = "text-danger" })
@@ -395,7 +339,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                                <input type="submit" value="Agregar" class="btn btn-default" />
                             </div>
                         </div>
                     </div>

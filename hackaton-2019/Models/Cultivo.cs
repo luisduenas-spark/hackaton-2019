@@ -14,5 +14,8 @@ namespace hackaton_2019.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaInicio { get; set; }
         public string Coordenadas { get; set; }
+        public string Nombre { get; set; }
+        [Display(Name ="Superficie (m2)")]
+        public int Superficie { get; set; }
     }
 }

@@ -81,9 +81,14 @@ namespace hackaton_2019.Controllers
             List<TipoCultivo> tipoCultivo = new List<TipoCultivo>();
             tipoCultivo = (List<TipoCultivo>) Session["cultivos"];
             List<Cultivo> cultivos = new List<Cultivo>();
-            if (Session["superficie"] != null)
+            if (Session["superficie"] == null)
             {
-                cultivos.Add(new Cultivo { Id = 1, TipoCultivo = tipoCultivo.Where(w => w.Id == 1).FirstOrDefault().Nombre, FechaInicio = Convert.ToDateTime("2019/01/01") });
+                cultivos.Add(new Cultivo {
+                    Id = 1,
+                    TipoCultivo = tipoCultivo.Where(w => w.Id == 1).FirstOrDefault().Nombre,
+                    FechaInicio = Convert.ToDateTime("2019/01/01"),
+                    Nombre = "Algodón"
+                });
                 Session["superficie"] = cultivos;
                 
             }
@@ -94,14 +99,17 @@ namespace hackaton_2019.Controllers
             return View(obj);
         }
         [HttpPost]
-        public ActionResult Index(Cultivo cultivo)
+        public ActionResult Index(ConceptosViewModel cultivoVM)
         {
             List<Cultivo> cultivos = (List<Cultivo>)Session["superficie"];
+
+            cultivoVM.Cultivos.Id = cultivos.Count + 1;
             //List<Concepto> conceptos = new List<Concepto>();
             //conceptos = (List<Concepto>)Session["conceptos"];
             //conceptoDetalle.Concepto = 
-            cultivo.Id = cultivos.Count + 1;
-            cultivos.Add(cultivo);
+
+            //cultivo.Id = cultivos.Count + 1;
+            cultivos.Add(cultivoVM.Cultivos);
 
             return RedirectToAction("Index");
         }
